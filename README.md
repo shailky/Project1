@@ -75,4 +75,24 @@ You use the `environment` system property to determine which environment to run 
 ```json
 $ mvn clean verify -Denvironment=staging
 ```
+Attempted: UI Automation
+Framework: Serenity-Cucumber-BDD framework
+Framework Description: Serenity BDD is a library that makes it easier to write high-quality automated acceptance tests, with powerful reporting and living documentation features. Serenity strongly encourages good test automation design, and supports several design patterns, including classic Page Objects, the newer Lean Page Objects/Action Classes approach, and the more sophisticated and flexible Screenplay pattern.
 
+Project Structure:
+UseCasePageObjects.java- It contains all the locators of the page. Since we are dealing with only home page. hence, I have created a single class. Page classes increases as per the number of pages to be navigated.
+UseCaseStepDefinitions.java- It controls the calling of steps in feature file. Step definition maps the Test Case Steps in the feature files(introduced by Given/When/Then) to code. 
+UseCaseSteps.java- Implementation of step definition files lies in steps file which calls locators from UseCasePageObjects
+UseCases.feature- It contains a list of scenarios to be tested for that feature. Given/When/Then/And defines the scenarios. Verification steps resides in THEN keyword
+Serenity.conf- Default URL and browser details are mentioned in this file
+
+Reporting: Serenity generates a single-page, self-contained HTML summary report, containing an overview of the test results, and a configurable breakdown of the status of different areas of the application. It contains screenshot of all the steps executed. Hence the scenario mentioned in use case 1 where user needs to take screenshot of the item could be covered with reporting. We don't need to explicitly mention screenshot methods
+Report Location: Project->Target->site->Serenity->Index.html
+
+Dependencies: All dependencies are added in pom.xml. U need to download dependencies after importing the project.
+
+Project running can be achieved by following: 
+1.By running CucumberTestSuite
+2.By running UseCase.feature
+3.Go to terminal-> mvn clean verify
+4.Go to terminal-> mvn clean verify -Dcucumber.options="--tags @TC1/@TC2"
